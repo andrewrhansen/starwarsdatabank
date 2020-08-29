@@ -2,33 +2,33 @@ import React, { Component } from "react";
 
 class TableBody extends Component {
   state = {};
+
+  renderRows = () => {
+    console.log("prop data: ", this.props.data);
+    if (this.props.data == undefined) {
+      return null;
+    } else {
+      return this.props.data.map((r) => (
+        <tr>
+          <td>{r.name}</td>
+          <td>{r.birth_year}</td>
+          <td>{r.gender}</td>
+        </tr>
+      ));
+    }
+  };
+
   render() {
     return (
       <table className="ui celled table">
         <thead>
           <tr>
             <th>Name</th>
-            <th>Age</th>
-            <th>Job</th>
+            <th>Birth Year</th>
+            <th>Gender</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td data-label="Name">James</td>
-            <td data-label="Age">24</td>
-            <td data-label="Job">Engineer</td>
-          </tr>
-          <tr>
-            <td data-label="Name">Jill</td>
-            <td data-label="Age">26</td>
-            <td data-label="Job">Engineer</td>
-          </tr>
-          <tr>
-            <td data-label="Name">Elyse</td>
-            <td data-label="Age">24</td>
-            <td data-label="Job">Designer</td>
-          </tr>
-        </tbody>
+        <tbody>{this.renderRows()}</tbody>
       </table>
     );
   }

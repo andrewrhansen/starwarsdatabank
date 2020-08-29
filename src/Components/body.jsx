@@ -4,13 +4,13 @@ import Search from "./search";
 import Axios from "axios";
 
 class Body extends Component {
-  state = { results: [] };
+  state = { results: undefined };
 
   getSearchResults = (input) => {
     Axios.get(`https://swapi.dev/api/people/?search=${input}`).then(
       (response) => {
-        this.setState({ results: response });
-        console.log("response: ", response);
+        this.setState({ results: response.data.results });
+        console.log("saved response: ", this.state.results);
       }
     );
   };
